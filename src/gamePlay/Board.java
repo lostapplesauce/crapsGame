@@ -6,7 +6,7 @@ import java.util.Collection;
 
 
 public class Board {
-    String choice = Bets.scn.nextLine(); //example of how to call Scanner from other class
+    String choice = Bets.scn.nextLine(); //example of how to call Scanner from Bets class
 
     Bets bet = new Bets();
 
@@ -15,6 +15,7 @@ public class Board {
             case "1" -> bet.setPassLine();
             case "2" -> bet.field();
             case "3" -> bet.comeLine();
+            case "4" -> bet.horn();
         }
     }
 }

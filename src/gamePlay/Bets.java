@@ -6,7 +6,7 @@ import java.util.*;
 public class Bets {
 
 
-    public int playerBank = 0;
+    private int playerBank = 0;
     int bet = 0;
     int payment = 0;
 
@@ -20,7 +20,9 @@ public class Bets {
     int[] numbers = {no2, no3, no4, no5, no6, no7, no8, no9, no10, no11, no12};
     int point = numbers[roll];
     int currentPoint = 0;
-    int dice = numbers[roll];
+
+    //TODO set up choose to roll option
+    int dice = numbers[roll]; //random roll of numbers
 
     public void field(){
         if(dice == no2 || dice == no12){
@@ -28,7 +30,7 @@ public class Bets {
             System.out.println("Double the field");
             payment = (bet * 2);
         }
-        else if(dice == 6 || dice == 8 || dice == 5){
+        else if(dice == no6 || dice == no8 || dice == no5){
             System.out.println(dice);
             System.out.println("Not in the field");
             payment -= bet;
@@ -87,6 +89,7 @@ public class Bets {
     public void  comeLine(){
         //TODO number rolled bet goes there
         bet = scn.nextInt();
+        System.out.println("You're betting " + bet);
         if(dice == no7){
             payment = bet;
         }
@@ -94,11 +97,37 @@ public class Bets {
             payment -= bet;
         } else {
             point = dice;
-            payComeLine();
+            comeLinePoint();
         }
+        playerBank += bet;
+        System.out.println(playerBank);
     }
 
-    public void payComeLine(){
+    public void comeLinePoint(){
 
+        System.out.println("Bet is " + bet);
+        if(dice == point){
+            payment = bet;
+        }
+
+        else if(dice == no7){
+            bet = 0;
+        }
+
+        playerBank += bet;
+        System.out.println(playerBank);
+    }
+
+    public void horn(){
+        //TODO has to get roll on next turn or doesn't win
+        if(dice == no2 || dice == no12){
+            payment = (bet *= 30);
+        }
+        else if(dice == no3 || dice == no11){
+            payment = (bet *= 15);
+        } else {
+            bet = 0;
+        }
+        playerBank += bet;
     }
 }
