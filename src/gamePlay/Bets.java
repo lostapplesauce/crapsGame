@@ -49,6 +49,7 @@ public class Bets {
         System.out.println("setPassLine");
         bet = scn.nextInt();
 
+        System.out.println("You are betting " + bet);
 
         if(dice == no7 || dice == no11){
             System.out.println("Frontline winner!");
