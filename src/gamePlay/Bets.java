@@ -7,8 +7,10 @@ public class Bets {
 
 
     public int playerBank = 0;
+    public int[] allBets = new int[10];
     int bet = 0;
     int payment = 0;
+
 
     public static Scanner scn = new Scanner(System.in);
 

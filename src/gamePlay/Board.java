@@ -12,9 +12,9 @@ public class Board {
 
     public void boardChoice() {
         switch (choice) {
-            case "1" -> bet.setPassLine();
-            case "2" -> bet.field();
-            case "3" -> bet.comeLine();
+            case "1": bet.setPassLine();  //advanced case "1" -> bet.setPassLine();
+            case "2": bet.field();
+            case "3": bet.comeLine();
         }
     }
 }
