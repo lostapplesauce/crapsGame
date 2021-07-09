@@ -13,8 +13,11 @@ public class Board {
     public void boardChoice() {
         switch (choice) {
             case "1": bet.setPassLine();  //advanced case "1" -> bet.setPassLine();
+                break;
             case "2": bet.field();
+                break;
             case "3": bet.comeLine();
+                break;
         }
     }
 }

@@ -3,34 +3,37 @@ package gamePlay;
 import java.util.Scanner;
 import java.util.*;
 
+import gamePlay.Player;
+
 public class Bets {
 
 
-    public int playerBank = 0;
     public int[] allBets = new int[10];
-    int bet = 0;
-    int payment = 0;
+    private int bet = 0;
+    private int payment = 0;
 
 
-    public static Scanner scn = new Scanner(System.in);
+    static Scanner scn = new Scanner(System.in);
 
     int roll = (int)Math.floor(Math.random()*(12 - 1) + 0);
 
-    Integer no2 = 2, no3 = 3, no4 = 4, no5 = 5, no6 = 6, no7 = 7,
+    private Integer no2 = 2, no3 = 3, no4 = 4, no5 = 5, no6 = 6, no7 = 7,
     no8 = 8, no9 = 9, no10 = 10, no11 = 11, no12 = 12;
 
-    int[] numbers = {no2, no3, no4, no5, no6, no7, no8, no9, no10, no11, no12};
-    int point = numbers[roll];
-    int currentPoint = 0;
-    int dice = numbers[roll];
+    private int[] numbers = {no2, no3, no4, no5, no6, no7, no8, no9, no10, no11, no12};
+    private int point = numbers[roll];
+    private int currentPoint = 0;
+    private int dice = numbers[roll];
 
-    public void field(){
+
+
+    void field(){
         if(dice == no2 || dice == no12){
             System.out.println(dice);
             System.out.println("Double the field");
             payment = (bet * 2);
         }
-        else if(dice == 6 || dice == 8 || dice == 5){
+        else if(dice == no6 || dice == no8 || dice == no5 || dice == no7){
             System.out.println(dice);
             System.out.println("Not in the field");
             payment -= bet;
@@ -61,8 +64,10 @@ public class Bets {
             System.out.println("The point is now " + currentPoint);
             playingPassLine(); //rolling to get point
         }
-        playerBank += payment;
-        
+
+        Player.buyIn += bet;
+        System.out.println("Your new balance " + Player.buyIn);
+
     }
 
     public void playingPassLine(){
