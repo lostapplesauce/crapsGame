@@ -3,43 +3,71 @@ package gamePlay;
 import java.util.Scanner;
 import java.util.*;
 
-import gamePlay.Player;
+import gamePlay.Dice;
 
 public class Bets {
 
+    private ArrayList<Bets> allBets = new ArrayList<>();
 
-    public int[] allBets = new int[10];
     private int bet = 0;
+
+    public Map<ArrayList<Bets>, Integer> betsMap = new HashMap<ArrayList<Bets>, Integer>();
+
     private int payment = 0;
 
+    private Dice dice1 = new Dice();
+    private Dice dice2 = new Dice();
+    private int diceSum = dice1.getFaceValue() + dice2.getFaceValue();
 
-    static Scanner scn = new Scanner(System.in);
+    public int getDiceSum() {
+        return diceSum;
+    }
 
-    int roll = (int)Math.floor(Math.random()*(12 - 1) + 0);
+    public void setDiceSum(int diceSum) {
+        this.diceSum = diceSum;
+    }
+
+    public int getBet() {
+        return bet;
+    }
+
+    public void setBet(int bet) {
+        this.bet = bet;
+    }
+
+    public int getPayment() {
+        return payment;
+    }
+
+    public void setPayment(int payment) {
+        this.payment = payment;
+    }
+
+    public static Scanner scn = new Scanner(System.in);
+
+    private int roll = (int)Math.floor(Math.random()*(12 - 1) + 0);
 
     private Integer no2 = 2, no3 = 3, no4 = 4, no5 = 5, no6 = 6, no7 = 7,
     no8 = 8, no9 = 9, no10 = 10, no11 = 11, no12 = 12;
 
-    private int[] numbers = {no2, no3, no4, no5, no6, no7, no8, no9, no10, no11, no12};
-    private int point = numbers[roll];
+    private int point = 0;
     private int currentPoint = 0;
-    private int dice = numbers[roll];
-
 
 
     void field(){
-        if(dice == no2 || dice == no12){
-            System.out.println(dice);
+
+        if(diceSum == no2 || diceSum == no12){
+            System.out.println(diceSum);
             System.out.println("Double the field");
             payment = (bet * 2);
         }
-        else if(dice == no6 || dice == no8 || dice == no5 || dice == no7){
-            System.out.println(dice);
+        else if(diceSum == no6 || diceSum == no8 || diceSum == no5 || diceSum == no7){
+            System.out.println(diceSum);
             System.out.println("Not in the field");
             payment -= bet;
         }
         else {
-            System.out.println(dice);
+            System.out.println(diceSum);
             System.out.println("Win the field");
             payment = bet;
         }
@@ -50,13 +78,15 @@ public class Bets {
         //TODO frontline winner 7
         //TODO ^ if statement for this ^
         System.out.println("setPassLine");
+
+        System.out.println("How much do you wanna bet on Pass line?");
         bet = scn.nextInt();
 
 
-        if(dice == no7 || dice == no11){
+        if(diceSum == no7 || diceSum == no11){
             System.out.println("Frontline winner!");
             payment = bet;
-        } else if(dice == no2 || dice == no3 || dice == no12){
+        } else if(diceSum == no2 || diceSum == no3 || diceSum == no12){
             System.out.println("crap");
             payment -= bet;
         } else {
@@ -70,42 +100,43 @@ public class Bets {
 
     }
 
-    public void playingPassLine(){
+    private void playingPassLine(){
         //TODO 7 out
         //TODO point hits, get paid
-        dice = numbers[roll];
+        //dice = numbers[roll];
 
-        if(dice == no7){
-            System.out.println(dice);
+        if(diceSum == no7){
+            System.out.println(diceSum);
             System.out.println("7 out lines away");
             //TODO Everything is wiped with 7 out.
-        } else if(dice != point){
-            System.out.println(dice);
+        } else if(diceSum != point){
+            System.out.println(diceSum);
             System.out.println("keep rolling ");
 
-        } else if(dice == currentPoint){
-            System.out.println(dice);
+        } else if(diceSum == currentPoint){
+            System.out.println(diceSum);
             System.out.println("Frontline Winner");
         } else {
-            dice = numbers[roll];
+            System.out.println(diceSum);
         }
     }
 
     public void  comeLine(){
         //TODO number rolled bet goes there
         bet = scn.nextInt();
-        if(dice == no7){
+        if(diceSum == no7){
             payment = bet;
         }
-        else if(dice == no2 || dice == no3 || dice == no12){
+        else if(diceSum == no2 || diceSum == no3 || diceSum == no12){
             payment -= bet;
         } else {
-            point = dice;
+            point = diceSum;
             payComeLine();
         }
     }
 
-    public void payComeLine(){
+    private void payComeLine(){
 
     }
+
 }
