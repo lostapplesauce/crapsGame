@@ -1,5 +1,7 @@
 package gamePlay;
 
+import gamePlay.Bets;
+
 public class Player {
 
     static int buyIn;

@@ -3,8 +3,6 @@ package gamePlay;
 import java.util.Scanner;
 import java.util.*;
 
-import gamePlay.Dice;
-
 public class Bets {
 
     private ArrayList<Bets> allBets = new ArrayList<>();
@@ -31,8 +29,8 @@ public class Bets {
         return bet;
     }
 
-    public void setBet(int bet) {
-        this.bet = bet;
+    public int setBet(int bet) {
+        return this.bet = bet;
     }
 
     public int getPayment() {
@@ -103,7 +101,6 @@ public class Bets {
     private void playingPassLine(){
         //TODO 7 out
         //TODO point hits, get paid
-        //dice = numbers[roll];
 
         if(diceSum == no7){
             System.out.println(diceSum);
@@ -136,7 +133,13 @@ public class Bets {
     }
 
     private void payComeLine(){
-
+        if(diceSum == point) {
+            payment += bet;
+            System.out.println(payment);
+        }
+        else{
+                System.out.println("still going");
+            }
     }
 
 }
